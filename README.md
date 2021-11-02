@@ -11,4 +11,6 @@ The free enthalpy losses produced by the installation of various secondary struc
 *Turner DH, Mathews DH. NNDB: the nearest neighbor parameter database for predicting stability of nucleic acid secondary structure. Nucleic Acids Res. 2010;38(Database issue):D280-D282. doi:10.1093/nar/gkp892*
 <p>Website: [Nearest Neighbor Database](http://rna.urmc.rochester.edu/NNDB)</p>
 
+[NDBB](http://rna.urmc.rochester.edu/NNDB/)
+
 This code was written long time ago by me in course of my bachelor's thesis. Now, that already many years passed I decided to learn programming. As a start I created this repository to learn how to manage it and I'll try to make my old code smoother. 
