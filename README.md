@@ -9,8 +9,6 @@ How to get started: *will be added soon*.
 
 The free enthalpy losses produced by the installation of various secondary structures in the RNA molecule are retrieved from a set of nearest neighbor parameters calculated by the Turner group. Free energy and free enthalpy changes have been estimated by the group. 
 *Turner DH, Mathews DH. NNDB: the nearest neighbor parameter database for predicting stability of nucleic acid secondary structure. Nucleic Acids Res. 2010;38(Database issue):D280-D282. doi:10.1093/nar/gkp892*
-<p>If you are interested please visit the website [NNDB](http://rna.urmc.rochester.edu/NNDB)</p>
-
-[NDBB](http://rna.urmc.rochester.edu/NNDB/)
+<p>If you are interested please visit the website [NDBB](http://rna.urmc.rochester.edu/NNDB/). </p>
 
 This code was written long time ago by me in course of my bachelor's thesis. Now, that already many years passed I decided to learn programming. As a start I created this repository to learn how to manage it and I'll try to make my old code smoother. 
