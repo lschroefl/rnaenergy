@@ -174,8 +174,8 @@ def calculator():
                                 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                             #Hairpin loop
-                            #backwardcounter und forwardcounter sind die richtigen index zahlen, kommen vom counter
-                            # backwardneighbor und forwardneighbor sind die werte des pairtables also index +1
+                            #backwardcounter and forwardcounter correspond to the index of the current position
+                           # backwardneighbor und forwardneighbor correspond to position in pairtable (index+1)
 
 
                             if forwardneighbor != 0 :
@@ -265,7 +265,7 @@ def calculator():
                                         elif unpaired_bases_total <= 6:
                                             #print(loopornoloop, misslength)
                                             #print ("backward edge: ", backwardcounter, backwardneighbor, sequence[backwardcounter], sequence[backwardneighbor],
-                                             #  "Position hole: ", sequence[counter], counter,"forward edge: ", forwardcounter, forwardneighbor, sequence[forwardcounter], sequence[forwardneighbor])
+                                            #  "Position hole: ", sequence[counter], counter,"forward edge: ", forwardcounter, forwardneighbor, sequence[forwardcounter], sequence[forwardneighbor])
                                             
                                             enthalpyinternal = enthalpyinternal + (intermolec_initation + internal[(unpaired_bases_total, "Internal")] + asymmetrie*(misslength-loopornoloop) ) / unpaired_bases_total
 
