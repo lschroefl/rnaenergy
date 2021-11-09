@@ -1,0 +1,22 @@
+{% set name = "RNA-gibbs-free-energy-calculator" %}
+{% set version = "1.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source: 
+  git_url: https://github.com/LSchroefl/RNA-gibbs-free-energy-calculator
+requirements: 
+  build: 
+    - python
+		# more to come 
+  run: 
+    - python
+
+about:
+  home: https://github.com/LSchroefl/RNA-gibbs-free-energy-calculator
+  license: MIT
+  license_family: MIT
+  summary: Algorithm to calculate Gibbs Free Energy values of RNA molecules
+
