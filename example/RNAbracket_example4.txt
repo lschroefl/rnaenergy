@@ -1,0 +1,11 @@
+>S.cerevisiae_tRNA-PHE M10740/1-73
+Seq: GCGGAUUUAGCUCAGUUGGGAGAGCGCCAGACUGAAGAUUUGGAGGUCCUGUGUUCGAUCCACAGAAUUCGCA
+Str: (((((((..((((........)))).((((.........)))).....(((((.......)))))))))))).
+
+
+Seq: AGCGUGCCAGUCUGACGUAACGAUGU
+Str: ((((....(((((....)))))))))
+
+Seq: AUGCAAAUGCAGGGAAUGAUCGAU
+Str: ((((.(((((....))))).))))
+

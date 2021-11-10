@@ -1,0 +1,11 @@
+Example.trna1 (80056-80128)      Length: 73 bp
+Seq: GGGGGTATAGCTCAGCTGGGAGAGCGCTTGCATGGCAAGAGGtCAGGAGTGATCCTCCTTATCTCCA
+Str: >>>>>>..>>>>......<<<<.>>>>>.....<<<<<.....>>>>>.......<<<<<<<<<<<.
+
+Example.trna2 (242857-242942)    Length: 86 bp
+Seq: GGAAAGGTGTCCGAGTGGTttAAGGAGCTAGTCTTGAAAACTAGTGATGCGGCAACGCACCGTGGGTTCGAATCCCACCCTTTCCG
+Str: >>>>>>>..>>>...........<<<.>>>>>.......<<<<<...>>>>....<<<<..>>>>>.......<<<<<<<<<<<<.
+
+Example.trna3 (685130-685202)    Length: 73 bp
+Seq: GGGGGTGTAGCTCAGCTGGGAGAGCACCTGCCTTGCAAGCAGGGGGtCAGGAGTTCGATTCTCCTCATCTCCA
+Str: >>>>>>>..>>>>........<<<<.>>>>>.......<<<<<.....>>>>>.......<<<<<<<<<<<<. 
