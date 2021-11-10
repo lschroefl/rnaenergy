@@ -1,4 +1,4 @@
-# RNA-gibbs-free-energy-calculator
+# rnaenergy
 Algorithm to caluclate the gibbs free energy differences between folded and unfolded conformation of RNA molecules
 
 
