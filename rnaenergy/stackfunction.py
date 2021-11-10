@@ -1,8 +1,8 @@
-def dangleend():
+def stack():
         import os
         import numpy
         os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
-        file = open("dangle.txt", "r")
+        file = open("stack.txt", "r")
         #firstLine= file.readline()
         #secondLine = file.readline()
         #regular expressions (RE)
@@ -25,10 +25,8 @@ def dangleend():
                 #skipping unnecessary lines
                 while "X" not in line:
                     line = file.readline()
-                
-                for i in range(1):
                 if "X" in line:
-                               
+                    
                     #line = file.readline()
         
 #----------------------------------------------------------------------------------------------5' 3'----------------
@@ -98,229 +96,83 @@ def dangleend():
                     line=file.readline()
         
                 #print("\n")
-                else:
-                                           
-                    a = 0
-                    #b = 1
-                    l = []
-                    z = line.count("X")
-                    #print(z)
-                    #print(type(l))
-                    k = line[a] #+line[b]    
-                    for i in range (4):
-                        line=line.replace(" ", "")
-                        line = line.replace("X", "")
-                        line = line.replace("Y", "")
-                        k=line[a] #+line[b]
-                        l.append(k)
-                        a=a+1
-                        #b=b+2
-                    #print(l)
-                    
         
-                    # Now we are adding 1 nucleotide in the middle of our basepair that we received from list l above. We are doing this 4 times, 1 time for each nucleotide
-                    #1
-                    XbaseA= []
-                    for i in l :           
-                        i=list(i)         
-                        #i.insert(1,"A")
-                        i=str(i)
-                        i.replace(",", "")            
-                        XbaseA.append(i)
-                    #print(XbaseA)
-        
-                    #2    
-                    XbaseC= []
-                    for i in l :           
-                        i=list(i)         
-                        #i.insert(1,"C")
-                        i=str(i)
-                        i.replace(",", "")            
-                        XbaseC.append(i)
-                    #print(XbaseC)
-        
-                    #3
-                    XbaseG= []
-                    for i in l :           
-                        i=list(i)         
-                        #i.insert(1,"G")
-                        i=str(i)
-                        i.replace(",", "")            
-                        XbaseG.append(i)
-                    #print(XbaseG)
-        
-                    #4
-                    XbaseU= []
-                    for i in l :           
-                        i=list(i)         
-                        #i.insert(1,"U")
-                        i=str(i)
-                        i.replace(",", "")            
-                        XbaseU.append(i)
-                    #print(XbaseU)
-        
-        
-                    #Going to our next nucleotide pairs of interest   
-                    for i in range(1):
-                        line=file.readline()
-                
         
         #-----------------------------------------------------------------------------------------------3' 5'----------------------------
                 #creating the second list of our bases of interest, of our 3' to 5' thread, always 2 paired nucleotides
-
-                                
-                if "X" in line:
-                    a = 0
-                    #b = 1
-                    l = []
-                    #z = line.count("Y")
-                    #print(z)
-                    #print(type(l))
-                    k = line[a] #+line[b]
-                    for i in range (4):
-                        line=line.replace(" ", "")
-                        line = line.replace("X", "")
-                        line = line.replace("Y", "")
-                        k=line[a] #+line[b]
-                        l.append(k)
-                        a=a+1
-                        #b=b+2
-                        #print(l)
-                    
-                    
-                  # Now we are adding 1 nucleotide in the middle of our basepair that we received from list l above. We are doing this 4 times, 1 time for each nucleotide
-                 # We are reversing our nucleotide pair sequence as well to get an 5' to 3' conformation
+        
+                a = 0
+                #b = 1
+                l = []
+                z = line.count("Y")
+                #print(z)
+                #print(type(l))
+                k = line[a] #+line[b]    
+                for i in range (z):
+                    line=line.replace(" ", "")
+                    line = line.replace("X", "")
+                    line = line.replace("Y", "")
+                    k=line[a] #+line[b]
+                    l.append(k)
+                    a=a+1
+                    #b=b+2
+                #print(l)
+        
+        
+                # Now we are adding 1 nucleotide in the middle of our basepair that we received from list l above. We are doing this 4 times, 1 time for each nucleotide
+                # We are reversing our nucleotide pair sequence as well to get an 5' to 3' conformation
                 #1
-                    YbaseA= []
-                    for i in l :           
-                        i=list(i)
-                          
-                        i.insert(1,"A")
-                        i.reverse()
-                        i=str(i)
-                        i.replace(",", "")            
-                        YbaseA.append(i)
-                #print(YbaseA)
-          
-                    #2
-                    YbaseC= []
-                    for i in l :           
-                        i=list(i)
-                          
-                        i.insert(1,"C")
-                        i.reverse()
-                        i=str(i)
-                        i.replace(",", "")            
-                        YbaseC.append(i)
-                    #print(YbaseC)
-          
-          
-                    #3
-                    YbaseG= []
-                    for i in l :           
-                        i=list(i)
-                          
-                        i.insert(1,"G")
-                        i.reverse()
-                        i=str(i)
-                        i.replace(",", "")            
-                        YbaseG.append(i)
-                    #print(YbaseG)
-          
-          
-                    #4
-                    YbaseU= []
-                    for i in l :           
-                        i=list(i)
-                          
-                        i.insert(1,"U")
-                        i.reverse()
-                        i=str(i)
-                        i.replace(",", "")            
-                        YbaseU.append(i)
-                    #print(YbaseU)
-          
-                    #print("\n")
-
-
-
-
-                else:
-                    a = 0
-                    #b = 1
-                    l = []
-                    #z = line.count("Y")
-                    #print(z)
-                    #print(type(l))
-                    k = line[a] #+line[b]    
-                    for i in range (4):
-                        line=line.replace(" ", "")
-                        line = line.replace("X", "")
-                        line = line.replace("Y", "")
-                        k=line[a] #+line[b]
-                        l.append(k)
-                        a=a+1
-                        #b=b+2
-                        #print(l)
+                YbaseA= []
+                for i in l :           
+                    i=list(i)
                     
-                    
-                  # Now we are adding 1 nucleotide in the middle of our basepair that we received from list l above. We are doing this 4 times, 1 time for each nucleotide
-                 # We are reversing our nucleotide pair sequence as well to get an 5' to 3' conformation
-                #1
-                    YbaseA= []
-                    for i in l :           
-                        i=list(i)
-                          
-                        #i.insert(1,"A")
-                        i.reverse()
-                        i=str(i)
-                        i.replace(",", "")            
-                        YbaseA.append(i)
+                    i.insert(1,"A")
+                    i.reverse()
+                    i=str(i)
+                    i.replace(",", "")            
+                    YbaseA.append(i)
                 #print(YbaseA)
-          
-                    #2
-                    YbaseC= []
-                    for i in l :           
-                        i=list(i)
-                          
-                        #i.insert(1,"C")
-                        i.reverse()
-                        i=str(i)
-                        i.replace(",", "")            
-                        YbaseC.append(i)
-                    #print(YbaseC)
-          
-          
-                    #3
-                    YbaseG= []
-                    for i in l :           
-                        i=list(i)
-                          
-                        #i.insert(1,"G")
-                        i.reverse()
-                        i=str(i)
-                        i.replace(",", "")            
-                        YbaseG.append(i)
-                    #print(YbaseG)
-          
-          
-                    #4
-                    YbaseU= []
-                    for i in l :           
-                        i=list(i)
-                          
-                        #i.insert(1,"U")
-                        i.reverse()
-                        i=str(i)
-                        i.replace(",", "")            
-                        YbaseU.append(i)
-                    #print(YbaseU)
-          
-                    #print("\n")
-
-
-                        
-    
+        
+                #2
+                YbaseC= []
+                for i in l :           
+                    i=list(i)
+                    
+                    i.insert(1,"C")
+                    i.reverse()
+                    i=str(i)
+                    i.replace(",", "")            
+                    YbaseC.append(i)
+                #print(YbaseC)
+        
+        
+                #3
+                YbaseG= []
+                for i in l :           
+                    i=list(i)
+                    
+                    i.insert(1,"G")
+                    i.reverse()
+                    i=str(i)
+                    i.replace(",", "")            
+                    YbaseG.append(i)
+                #print(YbaseG)
+        
+        
+                #4
+                YbaseU= []
+                for i in l :           
+                    i=list(i)
+                    
+                    i.insert(1,"U")
+                    i.reverse()
+                    i=str(i)
+                    i.replace(",", "")            
+                    YbaseU.append(i)
+                #print(YbaseU)
+        
+                #print("\n")
+        
         #--------------------------------------------------------------------------------------------------
         
                     
@@ -329,7 +181,7 @@ def dangleend():
         
                 line = file.readline()
                                 
-                               
+                
                 for i in range(1):
                             line=file.readline()
         
@@ -352,7 +204,7 @@ def dangleend():
                 baseY = allY[m]
                 #print(baseY[m])
                     
-                for i in range(1):
+                for i in range(4):
         
                 
                         
@@ -402,7 +254,7 @@ def dangleend():
                             baseYY = str(baseYY)
                         #-------------------------------------------
                             #print(baseXX)
-                            print(baseXX, baseYY, line[g])
+                            #print(baseXX, baseYY, line[g])
                             
                             #allValues[l[g]]=line[h]+line[j]+line[k]
                             allValues[baseXX, baseYY]=line[g]
@@ -424,7 +276,7 @@ def dangleend():
                             baseYY = str(baseYY)
                         #-------------------------------------------
                             #print(baseXX)
-                            print(baseXX, baseYY, line[g])
+                            #print(baseXX, baseYY, line[g])
                             
                             #allValues[l[g]]=line[h]+line[j]+line[k]
                             allValues[baseXX, baseYY]=line[g]
@@ -452,7 +304,7 @@ def dangleend():
                 #line = line.replace(" ", "")
                 #D[line[0:6]]= line[6:10]
                 
-                       
+                    
             else:
                 line=file.readline()
             #print(allValues)
@@ -461,12 +313,12 @@ def dangleend():
         
         os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
 
-        numpy.save('dangledict', allValues)
-        dangle = numpy.load('dangledict.npy').item()
+        numpy.save('stackdict', allValues)
+        stack = numpy.load('stackdict.npy').item()
         #for key in allValues:
             #print(key)
         #print(stack.keys)
-        value = dangle.values()
+        value = stack.values()
         #print(value)
         #for i in value:
                 #print(type(i))
@@ -481,10 +333,10 @@ def dangleend():
         #print(allValues["CGC", "GGG"])
         
 #return(allValues)
-dangleend()
+stack()
 import numpy
 #stack = numpy.load('stackdict').item()
 #print(stack)
-dangle = numpy.load('dangledict.npy').item()
-#print(dangle["['A', 'A']", "['U', 'U']"])
-#print(dangle)
+stack = numpy.load('stackdict.npy').item()
+#print(stack["['A', 'A']", "['U', 'U']"])
+print(stack)
