@@ -130,3 +130,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+#.CD_Store wherever this file comes from
+.DS_Store
