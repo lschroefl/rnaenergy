@@ -1,10 +1,21 @@
 def dangleend():
     import os
     import numpy
-    from importlib import resources  #used to read resources included in the package
-    import io                       #converting bites
-    os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
-    file = open("dangle.txt", "r")
+    # thank you: https://stackoverflow.com/questions/6028000/how-to-read-a-static-file-from-inside-a-python-package
+    # abstract out the accessing of data files shipped within the package, so files can be accessed regardless of the packaging (file systeme vs. zip-file)
+    try:
+        import importlib.resources as pkg_resources
+    except:
+        # try backported to py<37 "importlib_resources"
+        import importlib_resources as pkg_resources
+
+    from . import energytable # relative import of the *package* folder containing my .txt files
+
+    #file = pkg_resources.read_text(energytable, "dangle.txt")
+    file = pkg_resources.open_text(energytable, "dangle.txt")
+
+    #os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
+    #file = open("dangle.txt", "r")
     # todo stop using a relative path (os.chdir to open .txt files)
     #firstLine= file.readline()
     #secondLine = file.readline()
