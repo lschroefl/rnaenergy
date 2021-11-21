@@ -1,4 +1,4 @@
-def stack():
+def int():
         #import os
         import numpy
         #os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
@@ -353,7 +353,7 @@ def stack():
         #print(allValues["CGC", "GGG"])
         
         #return(allValues)
-stack()
+int()
 import numpy
 int11 = numpy.load('int11dict.npy', allow_pickle=True).item()
 #print(int11)
