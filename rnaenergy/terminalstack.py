@@ -1,11 +1,9 @@
 def terminal():
-        import os
+    print("okokok")
         import numpy
-        os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
-        file = open("tstack.txt", "r")
-        #firstLine= file.readline()
-        #secondLine = file.readline()
-        #regular expressions (RE)
+
+        import importlib_resources
+        file = importlib_resources.open_text("energytable", "tstack.txt", encoding = 'utf-8', errors='strict')
 
         D={}
 
@@ -240,7 +238,7 @@ def terminal():
                     #print("\n")
                     #allValues={}
                     for i in line:
-                        if i is '.':
+                        if i == '.':
                             
                             line[g] = 0
                             
@@ -311,15 +309,15 @@ def terminal():
                 
         file.close()
         
-        os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
+        #os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
 
-        numpy.save('terminaldict', allValues)
-        stack = numpy.load('terminaldict.npy').item()
+        numpy.save('terminaldict', allValues, allow_pickle=True)
+        stack = numpy.load('terminaldict.npy', allow_pickle= True).item()
         #for key in allValues:
             #print(key)
         #print(stack.keys)
         value = stack.values()
-        #print(value)
+        print(value)
         #for i in value:
                 #print(type(i))
         
@@ -331,12 +329,13 @@ def terminal():
         #print(allValues.keys())
         #print(allValues)
         #print(allValues["CGC", "GGG"])
+        return(stack)
         
 #return(allValues)
 terminal()
 import numpy
 #stack = numpy.load('stackdict').item()
 #print(stack)
-tstack = numpy.load('terminaldict.npy').item()
-print(tstack["['U', 'A']", "['G', 'A']"])
-#print(stack)
+tstack = numpy.load('terminaldict.npy', allow_pickle=True).item()
+#print(tstack["['U', 'A']", "['G', 'A']"])
+print(tstack)

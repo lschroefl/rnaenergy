@@ -1,15 +1,11 @@
 # reading values of hairpin loop
 
 def loop():
-    import os
     import numpy
-    #os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
-    #file = open("loop.txt", "r")
-
     import importlib_resources
-    my_resources = importlib_resources.files("rnaenergy") / "energytable"
-    file = (my_resources / "loop.txt")  # .read_text()
-    file = file.open()
+
+
+    file = importlib_resources.open_text("energytable", "loop.txt", encoding='utf-8', errors='strict')
 
     line = file.readline()
     mydict = {}
@@ -64,15 +60,14 @@ def loop():
 
         file.close()
 
-        os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
 
-        numpy.save('loopdict', mydict)
-        stack = numpy.load('loopdict.npy').item()
+        numpy.save('loopdict', mydict, allow_pickle=True)
+        stack = numpy.load('loopdict.npy', allow_pickle=True).item()
 
 
 loop()
 import numpy
-dic = numpy.load('loopdict.npy').item()
+dic = numpy.load('loopdict.npy', allow_pickle=True).item()
 print(dic)
             
         

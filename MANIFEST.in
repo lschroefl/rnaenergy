@@ -1,1 +1,1 @@
-include src/energytable/*.txt
+include rnaenergy/energytable/*.txt

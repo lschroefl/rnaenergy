@@ -1,15 +1,10 @@
 def int():
-        #import os
         import numpy
-        #os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
-        #file = open("int11.txt", "r")
+
+        # todo comment according to the guidelines
         import importlib_resources
-        my_resources = importlib_resources.files("rnaenergy") / "energytable"
-        file = (my_resources / "int11.txt")  # .read_text()
-        file = file.open()
-        #firstLine= file.readline()
-        #secondLine = file.readline()
-        #regular expressions (RE)
+        file = importlib_resources.open_text("energytable", "int11.txt", encoding = 'utf-8', errors='strict')
+
 
         D={}
 
@@ -349,7 +344,7 @@ def int():
         
         #allValues(['C', 'G', 'G'] ['C', 'A', 'G'])
         #print(allValues.keys())
-        #print(allValues)
+        print(allValues)
         #print(allValues["CGC", "GGG"])
         
         #return(allValues)
@@ -359,4 +354,4 @@ int11 = numpy.load('int11dict.npy', allow_pickle=True).item()
 #print(int11)
 #stack = numpy.load('stackdict.npy').item()
 print(int11["['U', 'G', 'G']", "['C', 'G', 'A']"])
-#print(stack)
+print(int11)
