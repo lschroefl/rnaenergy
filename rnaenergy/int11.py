@@ -1,8 +1,12 @@
 def stack():
-        import os
+        #import os
         import numpy
-        os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
-        file = open("int11.txt", "r")
+        #os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
+        #file = open("int11.txt", "r")
+        import importlib_resources
+        my_resources = importlib_resources.files("rnaenergy") / "energytable"
+        file = (my_resources / "int11.txt")  # .read_text()
+        file = file.open()
         #firstLine= file.readline()
         #secondLine = file.readline()
         #regular expressions (RE)
@@ -254,7 +258,7 @@ def stack():
                     #print("\n")
                     #allValues={}
                     for i in line:
-                        if i is '.':
+                        if i == '.':
                             
                             line[g] = 0
                             
@@ -326,10 +330,10 @@ def stack():
                    
         file.close()
                 
-        os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
+        #os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
 
-        numpy.save('int11dict', allValues)
-        int11 = numpy.load('int11dict.npy').item()
+        numpy.save('int11dict', allValues, allow_pickle=True)
+        int11 = numpy.load('int11dict.npy', allow_pickle=True).item()
         #print(stack)
         #for key in allValues:
             #print(key)
@@ -351,8 +355,8 @@ def stack():
         #return(allValues)
 stack()
 import numpy
-int11 = numpy.load('int11dict.npy').item()
+int11 = numpy.load('int11dict.npy', allow_pickle=True).item()
 #print(int11)
 #stack = numpy.load('stackdict.npy').item()
-print(int11["['U', 'C', 'G']", "['C', 'C', 'G']"])
+print(int11["['U', 'G', 'G']", "['C', 'G', 'A']"])
 #print(stack)
