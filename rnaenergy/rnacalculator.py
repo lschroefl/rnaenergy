@@ -23,8 +23,8 @@ import forgi.utilities.stuff as fus
 
 def calculator():
 
-    fileorig = input("Please enter the name of the text file which contains you RNA sequence of interest. \n Please make sure your sequence starts with 'Seq: ' and your dot-bracket notation with 'Str: '. \n" ) 
-    direction = input("Please put in the directory which contains the file. \n")
+    fileorig = input("Please enter the name of the text file containing RNA-seq and dot-bracket annotation. \n Please make sure your sequence starts with 'Seq: ' and your dot-bracket notation with 'Str: '. \n" )
+    direction = input("Please specifiy the path to the file \n")
     
     os.chdir(direction)
     file=open(fileorig)

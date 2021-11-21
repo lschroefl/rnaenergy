@@ -3,8 +3,14 @@
 def loop():
     import os
     import numpy
-    os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
-    file = open("loop.txt", "r")
+    #os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
+    #file = open("loop.txt", "r")
+
+    import importlib_resources
+    my_resources = importlib_resources.files("rnaenergy") / "energytable"
+    file = (my_resources / "loop.txt")  # .read_text()
+    file = file.open()
+
     line = file.readline()
     mydict = {}
     while line != "":

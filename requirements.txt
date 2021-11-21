@@ -1,5 +1,7 @@
-numpy
-python-math
+# todo check if this file works properly
+# todo check whats wrong with the os installation
+numpy == 1.21.4
+python-math == 0.0.1
 forgi == 1.0
 
 
