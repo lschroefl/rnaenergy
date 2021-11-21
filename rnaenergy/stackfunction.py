@@ -1,11 +1,8 @@
 def stack():
-        import os
         import numpy
-        os.chdir("/home/casali/Schreibtisch/6Semester/Bachelorarbeit/NNDB/turner04")
-        file = open("stack.txt", "r")
-        #firstLine= file.readline()
-        #secondLine = file.readline()
-        #regular expressions (RE)
+        import importlib_resources
+
+        file = importlib_resources.open_text("energytable", "stack.txt", encoding = 'utf-8', errors='strict')
 
         D={}
 
