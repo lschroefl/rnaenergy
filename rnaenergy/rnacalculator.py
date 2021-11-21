@@ -29,8 +29,18 @@ def calculator():
     os.chdir(direction)
     file=open(fileorig)
 
-    os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
-    
+    #os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
+    import rnaenergy
+    import importlib_resources
+    my_resources = importlib_resources.files("rnaenergy")
+    file = (my_resources / "int11dict.npy")  # .read_text()
+    #file = file.open()
+    int1x1 = numpy.load(file, allow_pickle=True).item() ### FUCKING WORKS WHAT THE HELL
+    print(int1x1)
+
+    int11.stack()
+    # todo learn how to call all my addtional functions at the beginning of the calculator to create my dicts
+    # todo (in the end I want to be able to do everything with just calling the calulator
     stackdict = numpy.load('stackdict.npy').item()
     terminaldict = numpy.load('terminaldict.npy').item()
     wholelength = numpy.load('loopdict.npy').item()
