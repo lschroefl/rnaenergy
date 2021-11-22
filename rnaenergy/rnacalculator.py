@@ -11,9 +11,6 @@ os.getcwd()
 
 import forgi
 
-#import dotbracket_to_graph.py
-#import forgi.graph
-#import forgi.aux
 
 
 import forgi.utilities.stuff as fus
@@ -23,22 +20,28 @@ import forgi.utilities.stuff as fus
 
 def calculator():
 
-    fileorig = input("Please enter the name of the text file containing RNA-seq and dot-bracket annotation. \n Please make sure your sequence starts with 'Seq: ' and your dot-bracket notation with 'Str: '. \n" )
-    direction = input("Please specifiy the path to the file \n")
+
+    #fileorig = input("Please enter the name of the text file containing RNA-seq and dot-bracket annotation. \n Please make sure your sequence starts with 'Seq: ' and your dot-bracket notation with 'Str: '. \n" )
+    #direction = input("Please specifiy the path to the file \n")
+
+    fileorig = input ("Please enter the name of the text file annotation the RNA molecule. \n Specifiy the path to the file as well (if it is not contained within the current working directory).")
     
-    os.chdir(direction)
+    #os.chdir(direction) # change that its shit that I change my cwd
     file=open(fileorig)
 
     #os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
-    import rnaenergy
+    #import rnaenergy
     import importlib_resources
-    my_resources = importlib_resources.files("rnaenergy")
-    file = (my_resources / "int11dict.npy")  # .read_text()
+
+    #my_resources = importlib_resources.files("rnaenergy")
+    #file = (my_resources / "int11dict.npy")  # .read_text()
     #file = file.open()
+    file = importlib_resources.open_text("", "stack.txt", encoding='utf-8', errors='strict')
+
     int1x1 = numpy.load(file, allow_pickle=True).item() ### FUCKING WORKS WHAT THE HELL
     print(int1x1)
-
-    int11.stack()
+    import importlib_resources
+    file = importlib_resources.open_text("energytable", "tstack.txt", encoding='utf-8', errors='strict')
     # todo learn how to call all my addtional functions at the beginning of the calculator to create my dicts
     # todo (in the end I want to be able to do everything with just calling the calulator
     stackdict = numpy.load('stackdict.npy').item()

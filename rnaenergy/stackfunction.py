@@ -237,7 +237,7 @@ def stack():
                     #print("\n")
                     #allValues={}
                     for i in line:
-                        if i is '.':
+                        if i == '.':
                             
                             line[g] = 0
                             
@@ -308,10 +308,9 @@ def stack():
                 
         file.close()
         
-        os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
-
-        numpy.save('stackdict', allValues)
-        stack = numpy.load('stackdict.npy').item()
+        # todo check why this doesn't works
+        numpy.save('energytable/stackdict', allValues)
+        stack = numpy.load('energytable/stackdict.npy').item()
         #for key in allValues:
             #print(key)
         #print(stack.keys)
@@ -334,6 +333,6 @@ stack()
 import numpy
 #stack = numpy.load('stackdict').item()
 #print(stack)
-stack = numpy.load('stackdict.npy').item()
+stack = numpy.load('energytable/stackdict.npy').item()
 #print(stack["['A', 'A']", "['U', 'U']"])
 print(stack)
