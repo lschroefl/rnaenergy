@@ -1,9 +1,9 @@
-# reading values of hairpin loop
-
 def loop():
+    """
+    energy values for all kinds of loops
+    """
     import numpy
     import importlib_resources
-
 
     file = importlib_resources.open_text("energytable", "loop.txt", encoding='utf-8', errors='strict')
 
@@ -19,30 +19,22 @@ def loop():
                 line = line.split(" ")
                 line = list(filter(None, line))
                 
-     #Den ganzen mist als liste dargestellt jetzt ersetze ich noch alle '.' durch 0.0
-    #
+     #created a list from the readout of my loop.txt file
+     #replace all "." by "0.0"
                 g=0
                 for i in line:
-                    if line[g] is ".":
+                    if line[g] == ".":
                         line[g]=0
                         line[g]=float(line[g])
 
-                    #Jetzt erstelle ich ein dictionary dass als keys die basenanzahl und die art der schleife zuordnet
+                    # adds the number of bases and the type of loop as the two keys to "mydict"
                         if g == 1:
                             mydict[line[0], "Internal"] = line[g]
                         
-                            
-                            
 
-                        #g=g+1
-                        
                     else:
                         line[g] = float(line[g])
-                        #line[g]=int(line[g])
 
-
-
-                        #g=g+1
 
                     if g == 1:
                         mydict[line[0], "Internal"] = line[g]
@@ -54,9 +46,7 @@ def loop():
                 
                 
                         
-                #print(line)          
                 line = file.readline()
-        #print(mydict)
 
         file.close()
 
@@ -64,10 +54,8 @@ def loop():
         numpy.save('loopdict', mydict, allow_pickle=True)
         stack = numpy.load('loopdict.npy', allow_pickle=True).item()
 
-
+        
 loop()
 import numpy
-dic = numpy.load('loopdict.npy', allow_pickle=True).item()
-print(dic)
-            
-        
+dict = numpy.load('loopdict.npy', allow_pickle=True).item()
+print(dict)

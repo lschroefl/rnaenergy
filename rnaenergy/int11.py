@@ -1,7 +1,6 @@
 def int():
+    # todo comment according to guidelines
         import numpy
-
-        # todo comment according to the guidelines
         import importlib_resources
         file = importlib_resources.open_text("energytable", "int11.txt", encoding = 'utf-8', errors='strict')
 
@@ -24,8 +23,6 @@ def int():
         
                 #skipping unnecessary lines
                 while "X" not in line:
-                    #line = line.replace(" ", "")
-                    
                     line = file.readline()
                     line = line.replace(" ", "")
                     if line == "":
@@ -41,9 +38,6 @@ def int():
                     a = 0
                     b = 1
                     l = []
-                    #print(line)
-                    #print(z)
-                    #print(type(l))
                     k = line[a] +line[b]    
                     for i in range (6):
                         line=line.replace(" ", "")
@@ -54,7 +48,7 @@ def int():
                         a=a+2
                         b=b+2
                     #print(l)
-                    
+
         
                 # Now we are adding 1 nucleotide in the middle of our basepair that we received from list l above. We are doing this 4 times, 1 time for each nucleotide
                 #1
@@ -101,9 +95,7 @@ def int():
                 #Going to our next nucleotide pairs of interest   
                 for i in range(1):
                     line=file.readline()
-        
-                #print("\n")
-        
+
         
         #-----------------------------------------------------------------------------------------------3' 5'----------------------------
                 #creating the second list of our bases of interest, of our 3' to 5' thread, always 2 paired nucleotides
@@ -115,16 +107,10 @@ def int():
 
                 if line == "":
                     break
-                #print(z)
-                #print(len(line))
-                #print(type(l))
-                #k = line[a] +line[b]    
                 for i in range (6):
                     line=line.replace(" ", "")
                     line = line.replace("X", "")
                     line = line.replace("Y", "")
-                    #print(line)
-                    #print(len(line))
                     k=line[a] +line[b]
                     l.append(k)
                     a=a+2
@@ -134,6 +120,7 @@ def int():
         
                 # Now we are adding 1 nucleotide in the middle of our basepair that we received from list l above. We are doing this 4 times, 1 time for each nucleotide
                 # We are reversing our nucleotide pair sequence as well to get an 5' to 3' conformation
+
                 #1
                 YbaseA= []
                 for i in l :           
@@ -184,8 +171,6 @@ def int():
                     YbaseU.append(i)
                 #print(YbaseU)
         
-                #print("\n")
-        
         #--------------------------------------------------------------------------------------------------
         
                     
@@ -202,20 +187,14 @@ def int():
         #-----------------------------------------------------------------------------------------------------------------------
                     #trying to start listin all our values in an dictionary
                     #we need to connect two keys (thread1 and thread2) with one value
-        
-        
-                    
                     
         
                 allX = [XbaseA, XbaseC, XbaseG, XbaseU]
                 allY = [YbaseA, YbaseC, YbaseG, YbaseU]
-                #print(allX, allY)
-                
                     
                 m = 0
                
                 baseY = allY[m]
-                #print(baseY[m])
                     
                 for i in range(4):
         
@@ -226,7 +205,6 @@ def int():
                     line = line.replace("\n", "")
                     line=line.split(" ")
                     line= list(filter(None, line))
-                    #print(line)
         
         
                     # -----> our looping counters
@@ -240,18 +218,9 @@ def int():
                     g = 0
                     p = 0
                     q = 0
-        
-                    #print(XbaseA)
+
                     baseX = allX[m]
-                    #print(allY[m])
-                
-                    
-                    #print(baseY)
-                    
-                    #print(line)   
-                    #print(allValues)
-                    #print("\n")
-                    #allValues={}
+
                     for i in line:
                         if i == '.':
                             
@@ -266,10 +235,6 @@ def int():
                             baseXX = str(baseXX)
                             baseYY = str(baseYY)
                         #-------------------------------------------
-                            #print(baseXX)
-                            print(baseXX, baseYY, line[g])
-                            
-                            #allValues[l[g]]=line[h]+line[j]+line[k]
                             allValues[baseXX, baseYY]=line[g]
                             #print(allValues)
                             g=g+1
@@ -289,19 +254,13 @@ def int():
                             baseXX = str(baseXX)
                             baseYY = str(baseYY)
                         #-------------------------------------------
-                            #print(baseXX)
-                            #print(baseXX, baseYY, line[g])
-                            
-                            #allValues[l[g]]=line[h]+line[j]+line[k]
                             allValues[baseXX, baseYY]=line[g]
-                            #print(allValues)
                             g=g+1
                             p=p+1
                             if p == 4:
                                 q = q+1
                                 p = 0
                     #print(allValues)
-                    #print("\n")
                     m = m+1
 
 
@@ -311,47 +270,18 @@ def int():
                     line= file.readline()
         
         #-------------------------------------------------------------------------------------------------------------------------
-                        
-                        
-                #line = line.replace("\t", "")
-                #line = line.replace("\n", "")
-                #line = line.replace(" ", "")
-                #D[line[0:6]]= line[6:10]
-                
-                              
+
             else:
                 line=file.readline()
-            #print(allValues)
+            print(allValues)
                    
         file.close()
                 
-        #os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
 
         numpy.save('int11dict', allValues, allow_pickle=True)
         int11 = numpy.load('int11dict.npy', allow_pickle=True).item()
-        #print(stack)
-        #for key in allValues:
-            #print(key)
-        #print(stack.keys)
-        value = int11.values()
-        #print(value)
-        #for i in value:
-                #print(type(i))
-        
-        #print(allValues.get('TGT'))
-        
-        #print(allValues["['A', 'U', 'A']", "['T', 'U', 'T']"])
-        
-        #allValues(['C', 'G', 'G'] ['C', 'A', 'G'])
-        #print(allValues.keys())
-        print(allValues)
-        #print(allValues["CGC", "GGG"])
-        
-        #return(allValues)
+
 int()
 import numpy
-int11 = numpy.load('int11dict.npy', allow_pickle=True).item()
-#print(int11)
-#stack = numpy.load('stackdict.npy').item()
-print(int11["['U', 'G', 'G']", "['C', 'G', 'A']"])
-print(int11)
+dict = numpy.load('int11dict.npy', allow_pickle=True).item()
+print(dict)

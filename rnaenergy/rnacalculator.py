@@ -1,67 +1,47 @@
-# just calculating the free enthalpy energy of known structure conformations
-
 import math
-import os
-import re
 import numpy
-import __future__
-#import scipy
-
-os.getcwd()
-
-import forgi
-
-
-
 import forgi.utilities.stuff as fus
-#from forgi.graph import bulge_graph as fbg
-#bg = forgi.BulgeGraph()
+import os
 
+def calculate():
 
-def calculator():
+    """
+    weak points
+    1. my npy files are just saved to the working directory from which the script is called
+    1. I then manually transfered them to rnaenergy/energytable. Perfect would be a creating and storing as
 
+    2. I will now try to use the naiv approach with os.path.join to load my .npy files via numpy load..
+    2. I wanted to not use this approach as it seems to create problems when the package is loaded from a zip file, but for now its a quick fix
 
-    #fileorig = input("Please enter the name of the text file containing RNA-seq and dot-bracket annotation. \n Please make sure your sequence starts with 'Seq: ' and your dot-bracket notation with 'Str: '. \n" )
-    #direction = input("Please specifiy the path to the file \n")
+    todo at some point
+    the functions for the creation of the .npy dicts should be called directly from rnacalulator, the .npy files stored in this process
+    in the package energytable, and from there accessed by rnacalculator.calculator without using os.path
+
+    """
+
 
     fileorig = input ("Please enter the name of the text file annotation the RNA molecule. \n Specifiy the path to the file as well (if it is not contained within the current working directory).")
-    
-    #os.chdir(direction) # change that its shit that I change my cwd
     file=open(fileorig)
 
-    #os.chdir("/usr/local/lib/python3.5/dist-packages/numpy/lib")
-    #import rnaenergy
-    import importlib_resources
+    print(os.getcwd())
+    dirname = os.path.dirname(__file__)
 
-    #my_resources = importlib_resources.files("rnaenergy")
-    #file = (my_resources / "int11dict.npy")  # .read_text()
-    #file = file.open()
-    file = importlib_resources.open_text("", "stack.txt", encoding='utf-8', errors='strict')
+    # loading my .npy dicts that were previously created
+    terminaldict = numpy.load(os.path.join(dirname, 'energytable/terminaldict.npy'), allow_pickle=True).item()
+    wholelength = numpy.load(os.path.join(dirname, 'energytable/loopdict.npy'), allow_pickle=True).item()
+    int1x1 = numpy.load(os.path.join(dirname, 'energytable/int11dict.npy'), allow_pickle=True).item()
+    stackdict = numpy.load(os.path.join(dirname, 'energytable/stackdict.npy'), allow_pickle=True).item()
 
-    int1x1 = numpy.load(file, allow_pickle=True).item() ### FUCKING WORKS WHAT THE HELL
-    print(int1x1)
-    import importlib_resources
-    file = importlib_resources.open_text("energytable", "tstack.txt", encoding='utf-8', errors='strict')
-    # todo learn how to call all my addtional functions at the beginning of the calculator to create my dicts
-    # todo (in the end I want to be able to do everything with just calling the calulator
-    stackdict = numpy.load('stackdict.npy').item()
-    terminaldict = numpy.load('terminaldict.npy').item()
-    wholelength = numpy.load('loopdict.npy').item()
-    int1x1 = numpy.load('int11dict.npy').item()
 
     T = 310.15 # Kelvin, absolute temperature of the folding
     R = 1.987 # cal/mol*degree, gas konstante
     intermolec_initation = 4.09 #kcal/mol
     asymmetrie = 0.6 #kcal/mol
 
-    #print(int1x1)
-    #print(stackdict)
-    #print(wholelength)
     hairpin = {}
     internal = {}
     bulge = {}
-    #structure = ["(", ".", "(", ".", ")", ".","(",".", "(", ")", ")", ")"]
-    #structure = input("put in the dot-bracket notation.")
+
     
     for element in wholelength:
         if element[1] == 'Hairpin':
@@ -74,11 +54,7 @@ def calculator():
     for element in wholelength:
         if element[1] == 'Bulge':
             bulge[element]= wholelength[element]
-            
-    #print(hairpin)
-    #print(internal)
-    #print(bulge)
-    #print(missterm)
+
     
     line = file.readline()
 
@@ -97,9 +73,7 @@ def calculator():
             line = line.replace ("t", "T")
             line = line.replace ("T", "U")
             sequence = line.replace("\n", "")
-            #print(sequence)
             totalrnaleng = len(sequence)
-            #print(n)
 
         
             #reading out our dot bracket notation
@@ -107,10 +81,6 @@ def calculator():
             if "Str" in line:
 
                 if enthalpystack != printcontrol:
-                    #print(enthalpybulge)
-                    #print(enthalpyinternal)
-                    #print(enthalpyhairpin)
-                    #print(enthalpystack)
                     free_enthalpy = enthalpybulge + enthalpyinternal + enthalpyhairpin + enthalpystack
                     print(" \n The total Gibbs free energy of this RNA strand is ", free_enthalpy, " kcal/mol in total. \n")
 
@@ -131,20 +101,9 @@ def calculator():
 
                 numberopen = structure.count("(", 0, len(structure))
                 numberclosed = structure.count(")", 0, len(structure))
-                #print(structure)
                 
                 pairtablelong = fus.dotbracket_to_pairtable(structure)
-                #print(pairtable)
-                #print(pairtable[0], structure[0])
                 pairtable = pairtablelong[1:]
-
-                #print(numberopen, numberclosed, len(structure), len(index))
-                #print(index)
-                #print(sequence,"\n", pairtable)
-
-                #print(type(pairtable))
-
-                #print(len(sequence), len(pairtable))
 
                 counter = 0
                
@@ -155,13 +114,8 @@ def calculator():
                     
                     if element == 0:
 
-
-                        
-                        
-
                         forwardcounter = counter 
                         backwardcounter = counter -1
-                        #forwardneighbor = pairtable[forwardcounter]
 
                         if forwardcounter >= totalrnaleng:
                             break
@@ -188,27 +142,20 @@ def calculator():
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                             #Hairpin loop
                             #backwardcounter and forwardcounter correspond to the index of the current position
-                           # backwardneighbor und forwardneighbor correspond to position in pairtable (index+1)
+                            #backwardneighbor und forwardneighbor correspond to position in pairtable (index+1)
 
 
                             if forwardneighbor != 0 :
-                                #print (backwardcounter, backwardneighbor, forwardneighbor, forwardcounter, counter)
-
-
-
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                             #Hairpin loop
-                            #backwardcounter und forwardcounter sind die richtigen index zahlen, kommen vom counter
-                            # backwardneighbor und forwardneighbor sind die werte des pairtables also index +1
+                            #backwardcounter and forwardcounter correspond to index, start at 0
+                            #backwardneighbor und forwardneighbor correspond to the pairtable (index +1)
                                 if backwardcounter+1 == forwardneighbor :
-                                    
-                                    #print ("hairpin loop")
+
                                     loopsize = forwardcounter-(backwardcounter+1)
                            
                             
                                     pair = sequence[backwardcounter]+sequence[backwardcounter+1],sequence[forwardcounter-1] + sequence[forwardcounter]
-                                    #print(pair)
-                                       #print(type(pair))
 
                                     for bothkey in terminaldict:
                                         startkey = bothkey[0]
@@ -230,7 +177,6 @@ def calculator():
                                         if key == pair:
                                             enthalpyhairpin = enthalpyhairpin+(terminaldict[bothkey]/loopsize) + hairpin[(loopsize, "Hairpin")]/loopsize
                                             print(counter, sequence[counter], " -> hairpinloop ", enthalpyhairpin)
-                                            #print("hairpin loop", loopsize, key, startindex, endindex)
 
 
 
@@ -244,9 +190,7 @@ def calculator():
                                         
 
                                     if loopornoloop > 1:
-                                        #print(len(sequence), len(pairtable))
-                                        #print ("backward edge: ", backwardcounter, backwardneighbor, sequence[backwardcounter], sequence[backwardneighbor],
-                                        #       "Position hole: ", sequence[counter], counter,"forward edge: ", forwardcounter, forwardneighbor, sequence[forwardcounter], sequence[forwardneighbor])
+
                                         if loopornoloop == 2 and misslength == 2:
 
                                             for bothkey in int1x1:
@@ -272,16 +216,10 @@ def calculator():
                                                     
                                                     enthalpyinternal = enthakpyintern + (int1x1[bothkey]/2)
                                                     print(counter, sequence[counter], " -> internal loop 1x1 -> ", enthalpyinternal)
-                                                
-                                                    #print ("backward edge: ", backwardcounter, backwardneighbor, sequence[backwardcounter], sequence[backwardneighbor],
-                                                        #"Position hole: ", sequence[counter], counter,"forward edge: ", forwardcounter, forwardneighbor, sequence[forwardcounter], sequence[forwardneighbor])
-                                        elif unpaired_bases_total <= 6:
-                                            #print(loopornoloop, misslength)
-                                            #print ("backward edge: ", backwardcounter, backwardneighbor, sequence[backwardcounter], sequence[backwardneighbor],
-                                            #  "Position hole: ", sequence[counter], counter,"forward edge: ", forwardcounter, forwardneighbor, sequence[forwardcounter], sequence[forwardneighbor])
-                                            
-                                            enthalpyinternal = enthalpyinternal + (intermolec_initation + internal[(unpaired_bases_total, "Internal")] + asymmetrie*(misslength-loopornoloop) ) / unpaired_bases_total
 
+                                        elif unpaired_bases_total <= 6:
+
+                                            enthalpyinternal = enthalpyinternal + (intermolec_initation + internal[(unpaired_bases_total, "Internal")] + asymmetrie*(misslength-loopornoloop) ) / unpaired_bases_total
                                             print(counter, sequence[counter], " -> internal loop -> ", enthalpyinternal)
                                             
                                         elif unpaired_bases_total > 6:
@@ -290,8 +228,8 @@ def calculator():
                                             enthalpyinternal = enthalpyinternal + (intermolec_initation + initation + asymmetrie*(misslength-loopornoloop) ) / unpaired_bases_total
 
 
-                                            print(counter, sequence[counter], " -> internal loop conatins in total of ", unpaired_bases_total, " unpaired nucleotides. ", enthalpyinternal)
-                                            print("Could be a pseudoknot or multiloop as well, this programm is not able to differentiate those. ")
+                                            print(counter, sequence[counter], " -> internal loop conatins ", unpaired_bases_total, " unpaired nucleotides. ", enthalpyinternal)
+                                            print("\n Alternatively a pseudoknot or a multiloop could be present, as these structures are not recognized by the algorithm. ")
                                             
                                     else:
                                         
@@ -314,15 +252,13 @@ def calculator():
                     else:
 
 
-                    # da der index eines str leider bei 0 startet muss ich die von den werten des pairtables 1 abziehen
-                    # extrem verwirrend auf dauer
+                    # index of strings starts at 0, index of pairtable at 1, therefore subtraction by 1 necessary
                         endindex = element-1
                         startindex = pairtable[endindex] -1
-                        #print(startindex)
-                        #print(sequence[startindex], sequence[endindex], startindex, endindex)
+
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------
-                        #calculating the energy values for our stack pairs, but twice the amount because we go over every pair 2 times, i think thats wrong i have to change that shit
+                        #calculating the energy values for our stack pairs, but twice the amount because we go over every pair 2 times, so we will divide by 2 in the end
                         # i change it a little bit we still have to 
                         if startindex+1 < len(pairtable):
                             
@@ -335,8 +271,6 @@ def calculator():
                                     pair = sequence[partnerend]+sequence[endindex], sequence[startindex]+sequence[partnerstart]
                                 else:
                                     pair = sequence[startindex]+sequence[partnerstart],sequence[partnerend] + sequence[endindex]
-                                #print(pair)
-                                #print(type(pair))
 
                                 for bothkey in stackdict:
 
@@ -356,54 +290,30 @@ def calculator():
                                     startkey= startkey.replace(" ", "")
 
                                     key = startkey, endkey
-                                    #print(key)
-                                    
-                                    #match = re.match(key, pair, re.I)
-                                    #if match != None:
-                                        #enthalpy = enthalpy + stackdickt[key]
 
                                     if key == pair:
                                         enthalpystack = enthalpystack+(stackdict[bothkey]/2)
                                         print (counter, sequence[counter], " -> stack ->", enthalpystack) 
-                                        #print(key, startindex, partnerend)
-                                        #print(enthalpy)
-                            #print(key, startindex, partnerend)
-                                    
 
 
-
-
-                                
                         counter = counter +1
-                #print(enthalpystack)
-                #print(enthalpyhairpin)
-                                  
 
-            
                 
                 line = file.readline()
-            
-            #numpy.save("free_enthaply_of"+ fileorig, [sequence, structure, free_enthalpy])             
+
         else:
             line = file.readline()
 
-        #enthalpystack muss ich noch in die hälfte teilen, enthalyhairpin ist bereits korrekt
-        #if (enthalpybulge and enthalpyinternal and enthalpystack and enthalpyhairpin) != 0:
-       
-        #numpy.save("free_enthaply_of"+ fileorig, [sequence, structure, free_enthalpy]) 
+
         if enthalpystack != printcontrol:
-            #print(enthalpybulge)
-            #print(enthalpyinternal)
-            #print(enthalpyhairpin)
-            #print(enthalpystack)
             free_enthalpy = enthalpybulge + enthalpyinternal + enthalpyhairpin + enthalpystack
-            print(" \n The total Gibbs free energy of this RNA strand is ", free_enthalpy, " kcal/mol in total. \n")
+            print(" \nThe amount of Gibbs Free Energy released through this secondary conformation adds up to ", free_enthalpy, " kcal/mol in total. \n")
             printcontrol = enthalpystack
         else:
             printcontrol = enthalpystack
 
            
 
-calculator()
+
             
            
