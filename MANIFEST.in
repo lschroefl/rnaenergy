@@ -1,1 +1,3 @@
-include rnaenergy/energytable/*.txt
+# MANIFEST.in doesnt seem to be necessary, setup.cfg does the job
+#include src/rnaenergy/energytable/*.txt
+#include src/rnaenergy/energytable/*.npy

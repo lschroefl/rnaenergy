@@ -5,9 +5,11 @@ Free energy change quantifies the stability of a secondary RNA structure as comp
 
 How to get started: 
 1. Install rnaenergy from pypi(*add the code to pull from repository*)
+# dependencies should be installed automatically
 2. Install dependencies (*add pip command to install from dependencies.txt)
-3. Call rnaenergy.rnacalculator.calulate() in python3 console
-4. The program will ask for input
+3. from rnaenergy import rnacalculator
+4. rnacalculator.calculate()
+5. The program will ask for input
     - The input must be a single text file (.txt), speficying the nucleobase sequence and the secondary structure <br>
     in form of a dot-bracket annotation. See in the folder rnaenergy/example/ for examples (*add a picture with an example below)
     - specify the path to and the name of the text file (e.g. home/Desktop/example1.txt
