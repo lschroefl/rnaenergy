@@ -307,10 +307,15 @@ def calculate():
 
         if enthalpystack != printcontrol:
             free_enthalpy = enthalpybulge + enthalpyinternal + enthalpyhairpin + enthalpystack
+            return free_enthalpy
             print(" \nThe amount of Gibbs Free Energy released through this secondary conformation adds up to ", free_enthalpy, " kcal/mol in total. \n")
             printcontrol = enthalpystack
         else:
             printcontrol = enthalpystack
+
+
+    #return free_enthalpy
+
 
            
 
