@@ -3,6 +3,9 @@ import numpy
 import forgi.utilities.stuff as fus
 import os
 
+class InputError(Exception):
+    "an exception class concerning the input from which rna sequence and conformation is read in"
+
 def calculate():
 
     """
@@ -20,7 +23,7 @@ def calculate():
     """
 
 
-    fileorig = input ("Please enter the name of the text file annotation the RNA molecule. \n Specifiy the path to the file as well (if it is not contained within the current working directory).")
+    fileorig = input ("Please enter the name of the txt or html file containing rna sequence and dot-bracket annotation. \n Specifiy the path to the file as well (if it is not contained within the current working directory).")
     file=open(fileorig)
 
     print(os.getcwd())
@@ -55,8 +58,10 @@ def calculate():
         if element[1] == 'Bulge':
             bulge[element]= wholelength[element]
 
-    
-    line = file.readline()
+    try:
+        line = file.readline()
+    except ValueError:
+        raise InputError("Error: the format of the file has to be text or html")
 
     enthalpybulge = 0
     enthalpyinternal = 0
