@@ -5,7 +5,6 @@ Free energy change quantifies the stability of a secondary RNA structure as comp
 
 How to get started: 
 1. Install rnaenergy from pypi(*add the code to pull from repository*)
-# dependencies should be installed automatically
 2. Install dependencies (*add pip command to install from dependencies.txt)
 3. from rnaenergy import rnacalculator
 4. rnacalculator.calculate()
