@@ -3,7 +3,7 @@
 The algorithm in this repository calculates free energy changes for RNA molecules with known secondary structure.
 Free energy change quantifies the stability of a secondary RNA structure as compared to a completely unpaired RNA strand. 
 
-How to get started: 
+##How to get started: 
 1. Install rnaenergy from pypi(*add the code to pull from repository*)
 2. Install dependencies (*add pip command to install from dependencies.txt)
 3. from rnaenergy import rnacalculator
@@ -13,13 +13,13 @@ How to get started:
     in form of a dot-bracket annotation. See in the folder rnaenergy/example/ for examples (*add a picture with an example below)
     - specify the path to and the name of the text file (e.g. home/Desktop/example1.txt
 
-Output: 
+##Output: 
 1. A list that specifies the secondary structure, and the thereby resulting free energy change (*kcal/mol*) for every position of your RNA sequence. 
 2. The total free energy change (*kcal/mol*) of this secondary structure compared to the completely unpaired strand. 
 
 
 
-Rational
+##Rational
 
 In RNA the predominant amount of free enthalpy is released by the formation of secondary rather than tertiary structure.
 The secondary structure of ribonucleic acids is usually stable context independent as isolated sequences. 
